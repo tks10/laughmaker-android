@@ -9,16 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import at.grabner.circleprogress.TextMode
 import com.takashi.laughmaker.R
 import com.takashi.laughmaker.result.BitmapList
 import com.takashi.laughmaker.util.FaceDetector
 import com.takashi.laughmaker.util.extractImages
+import kotlinx.android.synthetic.main.fragment_process.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
 class ProcessFragment : Fragment() {
     private val videoUri by lazy { ProcessFragmentArgs.fromBundle(arguments!!).videoUri }
+    private var isAnimated = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,16 @@ class ProcessFragment : Fragment() {
 
             progressLiveData.observe(this@ProcessFragment, Observer<Double> {
                 Log.e("Progress", it.toString())
+                if (!isAnimated) {
+                    circleProgressView?.setTextMode(TextMode.PERCENT)
+                    circleProgressView?.setValueAnimated(it!!.toFloat()*100f)
+                    circleProgressView?.isUnitVisible = true
+                    circleProgressView?.textScale = 0.7f
+                    isAnimated = true
+                } else {
+                    circleProgressView?.setValue(it!!.toFloat()*100f)
+                }
+
             })
             resultLiveData.observe(this@ProcessFragment, Observer<List<Bitmap>> {
                 Log.e("Smile", "Done!")

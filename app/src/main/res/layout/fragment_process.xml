@@ -7,5 +7,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".process.ProcessFragment">
 
+        <at.grabner.circleprogress.CircleProgressView
+                android:id="@+id/circleProgressView"
+                android:layout_width="192dp"
+                android:layout_height="192dp"
+                app:cpv_innerContourSize="0dp"
+                app:cpv_outerContourSize="0dp"
+                app:cpv_autoTextSize="true"
+                app:cpv_spin="true"
+                app:cpv_spinSpeed="6"
+                app:cpv_textMode="Text"
+                app:cpv_unit="%"
+                app:cpv_text="Loading..."
+                app:cpv_textColor="@color/colorPrimaryDark"
+                app:cpv_showTextInSpinningMode="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

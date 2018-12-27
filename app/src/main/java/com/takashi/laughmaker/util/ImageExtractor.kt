@@ -6,7 +6,7 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.util.Log
 
-fun extractImages(context: Context, uri: Uri, spanMs: Int = 333): List<Bitmap> {
+fun extractImages(context: Context, uri: Uri, spanMs: Int = 400): List<Bitmap> {
     val mmr = MediaMetadataRetriever()
     mmr.setDataSource(context, uri)
 
