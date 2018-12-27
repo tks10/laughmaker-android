@@ -11,4 +11,10 @@
             tools:layout="@layout/fragment_takemovie" >
     </fragment>
 
+    <fragment
+            android:id="@+id/previewFragment"
+            android:name="com.takashi.laughmaker.preview.PreviewFragment"
+            tools:layout="@layout/fragment_preview" >
+    </fragment>
+
 </navigation>
