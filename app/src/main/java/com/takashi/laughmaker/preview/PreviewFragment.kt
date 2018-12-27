@@ -2,11 +2,13 @@ package com.takashi.laughmaker.preview
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.VideoView
 import com.takashi.laughmaker.R
+import com.takashi.laughmaker.util.FaceDetector
 import com.takashi.laughmaker.util.extractImages
 import kotlinx.android.synthetic.main.fragment_preview.view.*
 import kotlinx.coroutines.GlobalScope
@@ -32,6 +34,13 @@ class PreviewFragment : Fragment() {
 
         GlobalScope.launch {
             val frames = extractImages(context!!, videoUri)
+            frames.forEach { frame ->
+                if (FaceDetector.isSmiling(frame)) {
+                    Log.e("Smile", "Yes!")
+                } else {
+                    Log.e("Smile", "No!")
+                }
+            }
         }
 
         return view
