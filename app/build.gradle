@@ -59,4 +59,7 @@ dependencies {
 
     // ViewModel, LiveData
     implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    // Circle Progress View
+    implementation 'com.github.jakob-grabner:Circle-Progress-View:1.4'
 }
