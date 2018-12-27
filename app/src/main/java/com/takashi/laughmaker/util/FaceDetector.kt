@@ -27,14 +27,16 @@ class FaceDetector {
             return task
         }
 
-        fun isSmiling(firebaseImages: List<FirebaseVisionFace>, threshold: Float = 0.8f): Boolean {
+        fun isSmiling(firebaseImages: List<FirebaseVisionFace>, threshold: Float): Boolean {
             firebaseImages.forEach {
                 if (it.smilingProbability >= threshold) return true
             }
             return false
         }
 
-        fun excuteSmileDetection(bitmapImages: List<Bitmap>, threshold: Float = 0.5f): LiveData<List<Bitmap>> {
+        fun excuteSmileDetection(bitmapImages: List<Bitmap>, threshold: Float = 0.8f)
+                : Pair<LiveData<List<Bitmap>>, LiveData<Double>> {
+            val progressLiveData = MutableLiveData<Double>()
             val resultLiveData = MutableLiveData<List<Bitmap>>()
             val tmpResult = mutableListOf<Bitmap>()
             val frameCount = bitmapImages.size
@@ -43,17 +45,18 @@ class FaceDetector {
             bitmapImages.forEach { bitmap ->
                 this.detect(bitmap)
                     .addOnSuccessListener {
-                        if (this.isSmiling(it)) tmpResult.add(bitmap)
+                        if (this.isSmiling(it, threshold)) tmpResult.add(bitmap)
                     }
                     .addOnCompleteListener {
                         detectedCount++
+                        progressLiveData.postValue(detectedCount.toDouble() / frameCount)
                         if (frameCount == detectedCount) {
                             resultLiveData.postValue(tmpResult)
                         }
                     }
             }
 
-            return resultLiveData
+            return Pair(resultLiveData, progressLiveData)
         }
     }
 }
