@@ -2,13 +2,15 @@ package com.takashi.laughmaker.preview
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.VideoView
 import com.takashi.laughmaker.R
+import com.takashi.laughmaker.util.extractImages
 import kotlinx.android.synthetic.main.fragment_preview.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class PreviewFragment : Fragment() {
@@ -26,6 +28,10 @@ class PreviewFragment : Fragment() {
             val videoView = it as VideoView
             videoView.seekTo(0)
             videoView.start()
+        }
+
+        GlobalScope.launch {
+            val frames = extractImages(context!!, videoUri)
         }
 
         return view
