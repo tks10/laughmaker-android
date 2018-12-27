@@ -34,12 +34,14 @@ class PreviewFragment : Fragment() {
             videoView.start()
         }
 
-        GlobalScope.launch {
-            val frames = extractImages(context!!, videoUri)
-            val resultLiveData = FaceDetector.excuteSmileDetection(frames)
-            resultLiveData.observe(this@PreviewFragment, Observer<List<Bitmap>> {
-                Log.e("Smile", "Done!")
-            })
+        view.detectButton.setOnClickListener {
+            GlobalScope.launch {
+                val frames = extractImages(context!!, videoUri)
+                val resultLiveData = FaceDetector.excuteSmileDetection(frames)
+                resultLiveData.observe(this@PreviewFragment, Observer<List<Bitmap>> {
+                    Log.e("Smile", "Done!")
+                })
+            }
         }
 
         return view
