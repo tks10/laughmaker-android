@@ -3,14 +3,27 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/navigation_graph.xml"
-            app:startDestination="@id/takeMovieFragment" >
+            app:startDestination="@id/pickUpFragment" >
 
     <fragment
             android:id="@+id/takeMovieFragment"
             android:name="com.takashi.laughmaker.takemovie.TakeMovieFragment"
             tools:layout="@layout/fragment_takemovie" >
         <action
-                android:id="@+id/action_roomlist_to_talkroom"
+                android:id="@+id/action_takemocie_to_preview"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:destination="@id/previewFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/pickUpFragment"
+            android:name="com.takashi.laughmaker.pickup.PickUpFragment"
+            tools:layout="@layout/fragment_pickup" >
+        <action
+                android:id="@+id/action_takemovie_to_preview"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"

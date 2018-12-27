@@ -37,7 +37,7 @@ class TakeMovieFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             val videoUri = intent.data ?: return
-            val action = TakeMovieFragmentDirections.actionRoomlistToTalkroom(videoUri)
+            val action = TakeMovieFragmentDirections.actionTakemocieToPreview(videoUri)
             Navigation.findNavController(view!!).navigate(action)
         }
     }
