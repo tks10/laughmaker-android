@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.takashi.laughmaker.R
 import kotlinx.android.parcel.Parcelize
+import com.takashi.laughmaker.result.Entity.ResultImage
+import kotlinx.android.synthetic.main.fragment_result.view.*
 
 
 class ResultFragment : Fragment() {
-    private val resultImages by lazy { ResultFragmentArgs.fromBundle(arguments!!).bitmapImages }
+    private val resultImages by lazy { ResultFragmentArgs.fromBundle(arguments!!).bitmapImages.map { ResultImage(it) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,7 @@ class ResultFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_result, container, false)
+        view.resultList.adapter = ResultListAdapter(context!!, resultImages)
 
         return view
     }

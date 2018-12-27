@@ -27,14 +27,14 @@ class FaceDetector {
             return task
         }
 
-        fun isSmiling(firebaseImages: List<FirebaseVisionFace>, threshold: Float): Boolean {
+        private fun isSmiling(firebaseImages: List<FirebaseVisionFace>, threshold: Float): Boolean {
             firebaseImages.forEach {
                 if (it.smilingProbability >= threshold) return true
             }
             return false
         }
 
-        fun excuteSmileDetection(bitmapImages: List<Bitmap>, threshold: Float = 0.8f)
+        fun executeSmileDetection(bitmapImages: List<Bitmap>, threshold: Float = 0.7f)
                 : Pair<LiveData<List<Bitmap>>, LiveData<Double>> {
             val progressLiveData = MutableLiveData<Double>()
             val resultLiveData = MutableLiveData<List<Bitmap>>()

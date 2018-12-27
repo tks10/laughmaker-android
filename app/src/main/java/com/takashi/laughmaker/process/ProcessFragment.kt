@@ -34,7 +34,7 @@ class ProcessFragment : Fragment() {
     private fun processImage() {
         GlobalScope.launch {
             val frames = extractImages(context!!, videoUri)
-            val (resultLiveData, progressLiveData) = FaceDetector.excuteSmileDetection(frames)
+            val (resultLiveData, progressLiveData) = FaceDetector.executeSmileDetection(frames)
 
             progressLiveData.observe(this@ProcessFragment, Observer<Double> {
                 Log.e("Progress", it.toString())
