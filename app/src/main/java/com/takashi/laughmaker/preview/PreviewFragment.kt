@@ -1,5 +1,6 @@
 package com.takashi.laughmaker.preview
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -34,12 +35,18 @@ class PreviewFragment : Fragment() {
 
         GlobalScope.launch {
             val frames = extractImages(context!!, videoUri)
+            val smilingImages = mutableListOf<Bitmap>()
+
             frames.forEach { frame ->
-                if (FaceDetector.isSmiling(frame)) {
-                    Log.e("Smile", "Yes!")
-                } else {
-                    Log.e("Smile", "No!")
-                }
+                val task = FaceDetector.detect(frame)
+                    .addOnSuccessListener {
+                        if (FaceDetector.isSmiling(it)) {
+                            smilingImages.add(frame)
+                        }
+                    }
+                    .addOnFailureListener {
+                        it.printStackTrace()
+                    }
             }
         }
 

@@ -1,8 +1,10 @@
 package com.takashi.laughmaker.util
 
 import android.graphics.Bitmap
+import com.google.android.gms.tasks.Task
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import com.google.firebase.ml.vision.face.FirebaseVisionFace
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions
 
 
@@ -16,15 +18,17 @@ class FaceDetector {
             .build()
         private val detector = FirebaseVision.getInstance().getVisionFaceDetector(options)
 
-        fun isSmiling(bitmap: Bitmap, threshold: Float = 0.5f): Boolean {
+        fun detect(bitmap: Bitmap): Task<List<FirebaseVisionFace>> {
             val firebaseImage = FirebaseVisionImage.fromBitmap(bitmap)
             val task = detector.detectInImage(firebaseImage)
-            val result = task.result
 
-            result.forEach {
+            return task
+        }
+
+        fun isSmiling(firebaseImages: List<FirebaseVisionFace>, threshold: Float = 0.5f): Boolean {
+            firebaseImages.forEach {
                 if (it.smilingProbability >= threshold) return true
             }
-
             return false
         }
     }
