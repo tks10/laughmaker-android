@@ -38,6 +38,22 @@
         <argument
                 android:name="videoUri"
                 app:argType="android.net.Uri" />
+        <action
+                android:id="@+id/action_preview_to_process"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:destination="@id/processFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/processFragment"
+            android:name="com.takashi.laughmaker.process.ProcessFragment"
+            tools:layout="@layout/fragment_process" >
+        <argument
+                android:name="videoUri"
+                app:argType="android.net.Uri" />
     </fragment>
 
 </navigation>

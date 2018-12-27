@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.VideoView
+import androidx.navigation.Navigation
 import com.takashi.laughmaker.R
 import com.takashi.laughmaker.util.FaceDetector
 import com.takashi.laughmaker.util.extractImages
@@ -35,17 +36,8 @@ class PreviewFragment : Fragment() {
         }
 
         view.detectButton.setOnClickListener {
-            GlobalScope.launch {
-                val frames = extractImages(context!!, videoUri)
-                val (resultLiveData, progressLiveData) = FaceDetector.excuteSmileDetection(frames)
-
-                progressLiveData.observe(this@PreviewFragment, Observer<Double> {
-                    Log.e("Progress", it.toString())
-                })
-                resultLiveData.observe(this@PreviewFragment, Observer<List<Bitmap>> {
-                    Log.e("Smile", "Done!")
-                })
-            }
+            val action = PreviewFragmentDirections.actionPreviewToProcess(videoUri)
+            Navigation.findNavController(view!!).navigate(action)
         }
 
         return view
