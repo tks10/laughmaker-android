@@ -1,23 +1,32 @@
 package com.takashi.laughmaker.preview
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.VideoView
+import com.takashi.laughmaker.R
+import kotlinx.android.synthetic.main.fragment_preview.view.*
 
 
 class PreviewFragment : Fragment() {
+    private val videoUri by lazy { PreviewFragmentArgs.fromBundle(arguments!!).videoUri }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
+        val view = inflater.inflate(R.layout.fragment_preview, container, false)
+        view.videoView.setVideoURI(videoUri)
+
+        view.videoView.setOnClickListener {
+            val videoView = it as VideoView
+            videoView.seekTo(0)
+            videoView.start()
+        }
 
         return view
     }

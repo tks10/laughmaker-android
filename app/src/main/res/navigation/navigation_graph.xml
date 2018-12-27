@@ -9,12 +9,22 @@
             android:id="@+id/takeMovieFragment"
             android:name="com.takashi.laughmaker.takemovie.TakeMovieFragment"
             tools:layout="@layout/fragment_takemovie" >
+        <action
+                android:id="@+id/action_roomlist_to_talkroom"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:destination="@id/previewFragment" />
     </fragment>
 
     <fragment
             android:id="@+id/previewFragment"
             android:name="com.takashi.laughmaker.preview.PreviewFragment"
             tools:layout="@layout/fragment_preview" >
+        <argument
+                android:name="videoUri"
+                app:argType="android.net.Uri" />
     </fragment>
 
 </navigation>
