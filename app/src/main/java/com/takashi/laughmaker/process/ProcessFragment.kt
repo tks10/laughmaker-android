@@ -24,7 +24,12 @@ class ProcessFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_process, container, false)
+        processImage()
 
+        return view
+    }
+
+    private fun processImage() {
         GlobalScope.launch {
             val frames = extractImages(context!!, videoUri)
             val (resultLiveData, progressLiveData) = FaceDetector.excuteSmileDetection(frames)
@@ -36,8 +41,6 @@ class ProcessFragment : Fragment() {
                 Log.e("Smile", "Done!")
             })
         }
-
-        return view
     }
 }
 

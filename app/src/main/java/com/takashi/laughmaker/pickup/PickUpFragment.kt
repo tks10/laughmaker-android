@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.takashi.laughmaker.R
-import com.takashi.laughmaker.takemovie.TakeMovieFragmentDirections
 import kotlinx.android.synthetic.main.fragment_pickup.view.*
 
 
