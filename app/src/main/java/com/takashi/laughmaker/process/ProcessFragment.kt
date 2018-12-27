@@ -8,7 +8,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.takashi.laughmaker.R
+import com.takashi.laughmaker.result.BitmapList
 import com.takashi.laughmaker.util.FaceDetector
 import com.takashi.laughmaker.util.extractImages
 import kotlinx.coroutines.GlobalScope
@@ -39,6 +41,10 @@ class ProcessFragment : Fragment() {
             })
             resultLiveData.observe(this@ProcessFragment, Observer<List<Bitmap>> {
                 Log.e("Smile", "Done!")
+                val action =
+                    ProcessFragmentDirections.actionProcessToResult(BitmapList(it!!))
+                Navigation.findNavController(view!!).navigate(action)
+
             })
         }
     }
