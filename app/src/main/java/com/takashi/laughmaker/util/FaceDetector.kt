@@ -34,7 +34,7 @@ class FaceDetector {
             return false
         }
 
-        fun executeSmileDetection(bitmapImages: List<Bitmap>, threshold: Float = 0.5f)
+        fun executeSmileDetection(bitmapImages: List<Bitmap>, threshold: Float = 0.8f)
                 : Pair<LiveData<List<Bitmap>>, LiveData<Double>> {
             val progressLiveData = MutableLiveData<Double>()
             val resultLiveData = MutableLiveData<List<Bitmap>>()

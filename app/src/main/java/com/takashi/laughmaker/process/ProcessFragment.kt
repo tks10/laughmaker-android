@@ -43,12 +43,12 @@ class ProcessFragment : Fragment() {
                 Log.e("Progress", it.toString())
                 if (!isAnimated) {
                     circleProgressView?.setTextMode(TextMode.PERCENT)
-                    circleProgressView?.setValueAnimated(it!!.toFloat()*100f)
+                    circleProgressView?.setValueAnimated(it!!.toFloat()*100f, 400L)
                     circleProgressView?.isUnitVisible = true
-                    circleProgressView?.textScale = 0.7f
+                    circleProgressView?.textScale = 0.65f
                     isAnimated = true
                 } else {
-                    circleProgressView?.setValue(it!!.toFloat()*100f)
+                    circleProgressView?.setValueAnimated(it!!.toFloat()*100f, 200L)
                 }
 
             })
