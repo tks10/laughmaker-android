@@ -13,8 +13,8 @@ import com.takashi.laughmaker.result.Entity.ResultImage
 import kotlinx.android.synthetic.main.fragment_result.view.*
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.GridLayoutManager
-
-
+import android.support.v7.widget.RecyclerView
+import android.view.ViewTreeObserver
 
 class ResultFragment : Fragment() {
     private val resultImages by lazy { ResultFragmentArgs.fromBundle(arguments!!).bitmapImages.map { ResultImage(it) } }
@@ -30,6 +30,16 @@ class ResultFragment : Fragment() {
         view.resultList.adapter = resultListAdapter
         val layoutManager = GridLayoutManager(context!!, 3, LinearLayoutManager.VERTICAL, false)
         view.resultList.layoutManager = layoutManager
+
+        val recyclerView = view!!.findViewById<RecyclerView>(R.id.resultList)
+        recyclerView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                val viewWidth = recyclerView.width
+                resultListAdapter.imageViewHeight = viewWidth / 3
+                resultListAdapter.notifyDataSetChanged()
+                recyclerView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
 
         return view
     }
