@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <variable name="imageViewHeight" type="java.lang.Integer" />
         <variable name="resultImage" type="com.takashi.laughmaker.result.Entity.ResultImage" />
     </data>
     <android.support.constraint.ConstraintLayout
@@ -16,6 +17,7 @@
                 android:layout_height="128dp"
                 android:scaleType="centerCrop"
                 app:bitmapImage="@{resultImage.bitmapImage}"
+                app:layout_height="@{imageViewHeight}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
