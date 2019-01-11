@@ -10,6 +10,8 @@ import com.takashi.laughmaker.result.Entity.*
 class ResultListAdapter(val context: Context, private val resultImages: List<ResultImage>)
     : RecyclerView.Adapter<ResultListAdapter.ViewHolder>() {
 
+    var imageViewHeight: Int = 0
+
     class ViewHolder(val binding: ResultItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,6 +24,7 @@ class ResultListAdapter(val context: Context, private val resultImages: List<Res
         val resultImage = resultImages[position]
         // Binding
         holder.binding.resultImage = resultImage
+        holder.binding.imageViewHeight = imageViewHeight
     }
 
     override fun getItemCount() = resultImages.size
