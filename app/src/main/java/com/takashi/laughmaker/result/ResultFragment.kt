@@ -31,16 +31,6 @@ class ResultFragment : Fragment() {
         val layoutManager = GridLayoutManager(context!!, 3, LinearLayoutManager.VERTICAL, false)
         view.resultList.layoutManager = layoutManager
 
-        val recyclerView = view!!.findViewById<RecyclerView>(R.id.resultList)
-        recyclerView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                val viewWidth = recyclerView.width
-                resultListAdapter.imageViewHeight = viewWidth / 3
-                resultListAdapter.notifyDataSetChanged()
-                recyclerView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-            }
-        })
-
         return view
     }
 }
