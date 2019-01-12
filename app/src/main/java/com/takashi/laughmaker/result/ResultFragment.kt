@@ -13,16 +13,10 @@ import com.takashi.laughmaker.result.Entity.ResultImage
 import kotlinx.android.synthetic.main.fragment_result.view.*
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.ViewTreeObserver
 
 class ResultFragment : Fragment() {
     private val resultImages by lazy { ResultFragmentArgs.fromBundle(arguments!!).bitmapImages.map { ResultImage(it) } }
     private lateinit var resultListAdapter: ResultListAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_result, container, false)

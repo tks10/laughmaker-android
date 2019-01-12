@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <variable name="imageViewHeight" type="java.lang.Integer" />
         <variable name="resultImage" type="com.takashi.laughmaker.result.Entity.ResultImage" />
     </data>
     <android.support.constraint.ConstraintLayout

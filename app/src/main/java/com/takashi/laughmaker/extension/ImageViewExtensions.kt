@@ -2,7 +2,6 @@ package com.takashi.laughmaker.extension
 
 import android.databinding.BindingAdapter
 import android.graphics.Bitmap
-import android.view.ViewGroup
 import android.widget.ImageView
 import kotlin.math.max
 
@@ -18,11 +17,4 @@ fun ImageView.bitmapImage(bitmap: Bitmap) {
     } else bitmap
 
     this.setImageBitmap(resizedBitmap)
-}
-
-@BindingAdapter("app:layout_height")
-fun ImageView.setLayoutHeight(height: Int) {
-    val layoutParams: ViewGroup.LayoutParams = this.layoutParams
-    layoutParams.height = height
-    this.layoutParams = layoutParams
 }
