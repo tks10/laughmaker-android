@@ -14,21 +14,16 @@ import kotlinx.android.synthetic.main.fragment_result.view.*
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.GridLayoutManager
 
-
-
 class ResultFragment : Fragment() {
     private val resultImages by lazy { ResultFragmentArgs.fromBundle(arguments!!).bitmapImages.map { ResultImage(it) } }
     private lateinit var resultListAdapter: ResultListAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var gridSpanCount: Int = 3
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_result, container, false)
         resultListAdapter = ResultListAdapter(context!!, resultImages)
         view.resultList.adapter = resultListAdapter
-        val layoutManager = GridLayoutManager(context!!, 3, LinearLayoutManager.VERTICAL, false)
+        val layoutManager = GridLayoutManager(context!!, gridSpanCount, LinearLayoutManager.VERTICAL, false)
         view.resultList.layoutManager = layoutManager
 
         return view
